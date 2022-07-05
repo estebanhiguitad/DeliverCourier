@@ -48,3 +48,6 @@ app.*.map.json
 /.vscode/launch.json
 
 lib/objectbox.g.dart
+/lib/infrastructure/test/objectbox.g.dart
+/lib/infrastructure/lib/objectbox.g.dart
+/lib/infrastructure/test/objectbox-model.json
