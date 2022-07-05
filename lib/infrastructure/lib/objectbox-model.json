@@ -1,0 +1,135 @@
+{
+  "_note1": "KEEP THIS FILE! Check it into a version control system (VCS) like git.",
+  "_note2": "ObjectBox manages crucial IDs for your object model. See docs for details.",
+  "_note3": "If you have VCS merge conflicts, you must resolve them according to ObjectBox docs.",
+  "entities": [
+    {
+      "id": "1:2459299831449568846",
+      "lastPropertyId": "2:4411371680718577725",
+      "name": "CustomerEntity",
+      "properties": [
+        {
+          "id": "1:7366928288749791050",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:4411371680718577725",
+          "name": "name",
+          "type": 9
+        }
+      ],
+      "relations": [
+        {
+          "id": "1:4039444011416779869",
+          "name": "order",
+          "targetId": "4:8509845063059958369"
+        }
+      ]
+    },
+    {
+      "id": "2:5736264567342123544",
+      "lastPropertyId": "2:1732661641900783800",
+      "name": "DeliveryCouriers",
+      "properties": [
+        {
+          "id": "1:1543859281863126272",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:1732661641900783800",
+          "name": "name",
+          "type": 9
+        }
+      ],
+      "relations": [
+        {
+          "id": "2:4090942074330875531",
+          "name": "orders",
+          "targetId": "4:8509845063059958369"
+        }
+      ]
+    },
+    {
+      "id": "4:8509845063059958369",
+      "lastPropertyId": "8:4912518275061071388",
+      "name": "OrderEntity",
+      "properties": [
+        {
+          "id": "1:2103203214249846365",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:390881710027923563",
+          "name": "startAddress",
+          "type": 9
+        },
+        {
+          "id": "3:3533317461308422212",
+          "name": "endAddress",
+          "type": 9
+        },
+        {
+          "id": "4:7979916875489528101",
+          "name": "price",
+          "type": 6
+        },
+        {
+          "id": "5:4655419105918647828",
+          "name": "description",
+          "type": 9
+        },
+        {
+          "id": "6:2616403046684079461",
+          "name": "customerId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "3:5106459772322286196",
+          "relationTarget": "CustomerEntity"
+        },
+        {
+          "id": "7:6937175711201711329",
+          "name": "deliveryCourierId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "4:7884648788057106578",
+          "relationTarget": "DeliveryCouriers"
+        },
+        {
+          "id": "8:4912518275061071388",
+          "name": "dbStatus",
+          "type": 6
+        }
+      ],
+      "relations": []
+    }
+  ],
+  "lastEntityId": "4:8509845063059958369",
+  "lastIndexId": "4:7884648788057106578",
+  "lastRelationId": "2:4090942074330875531",
+  "lastSequenceId": "0:0",
+  "modelVersion": 5,
+  "modelVersionParserMinimum": 5,
+  "retiredEntityUids": [
+    1123093398655243550
+  ],
+  "retiredIndexUids": [],
+  "retiredPropertyUids": [
+    1463921914389709255,
+    5994583957250993425,
+    7406251804769499289,
+    2453092933585544297,
+    1302166977752571107,
+    5337518520694797369,
+    5695452435750763817,
+    3796933737966857893,
+    4188407943025035100
+  ],
+  "retiredRelationUids": [],
+  "version": 1
+}
