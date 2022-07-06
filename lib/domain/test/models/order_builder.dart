@@ -9,9 +9,16 @@ class OrderBuilder {
   String startAddress = "Start address";
   String endAddress = "End address";
 
-  withId(int id) => this.id = id;
+  OrderBuilder withState(OrderState state) {
+    this.state = state;
+    return this;
+  }
+
+  withId(int id) {
+    this.id = id;
+    return this;
+  }
 
   Order build() =>
       Order(id, state, description, price, startAddress, endAddress);
-
 }
