@@ -1,7 +1,13 @@
+import 'customer.dart';
+import 'delivery_courier.dart';
 import 'order_state.dart';
 
 class Order {
   final int _id;
+
+  final Customer customer;
+
+  final DeliveryCourier deliveryCourier;
 
   int get id => _id;
 
@@ -26,7 +32,9 @@ class Order {
   String get endAddress => _endAddress;
 
   Order(this._id, this._state, this._description, this._price,
-      this._startAddress, this._endAddress);
+      this._startAddress, this._endAddress,
+      {this.customer = const Customer(0, "Customer 1"),
+      this.deliveryCourier = const DeliveryCourier(0, "Delivery Courier")});
 
   void changeStateToNext() {
     switch (_state) {
@@ -41,3 +49,4 @@ class Order {
     }
   }
 }
+

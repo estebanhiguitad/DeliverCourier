@@ -12,4 +12,20 @@ class OrderRepositoryStub implements OrderRepository {
       OrderBuilder().withId(1).build(),
     ];
   }
+
+  @override
+  Future<Order> getAnOrder(int id) {
+    // not implement getAnOrder
+    throw UnimplementedError();
+  }
+
+  @override
+  void save(Order order) {
+    // not implement save
+  }
+
+  @override
+  void updateOrder(Order order) {
+    // not implement updateOrder
+  }
 }
