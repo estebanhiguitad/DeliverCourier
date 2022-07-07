@@ -1,11 +1,11 @@
 import 'package:domain/entities/order.dart';
 import 'package:domain/repositories/order_repository.dart';
-import 'package:infrastructure/datasources/order_object_box_data_source.dart';
-import 'package:infrastructure/datasources/order_object_box_data_source_impl.dart';
 import 'package:infrastructure/objectbox.g.dart' as object_box;
-import 'package:infrastructure/objectbox/customer_entity.dart';
-import 'package:infrastructure/objectbox/delivery_couriers_entity.dart';
+import 'package:infrastructure/translates/from_database_translate.dart';
+import 'package:infrastructure/translates/from_domain_translate.dart';
 
+import '../datasources/order_object_box_data_source.dart';
+import '../datasources/order_object_box_data_source_impl.dart';
 import '../objectbox/order_entity.dart';
 
 class OrderRepositoryImpl implements OrderRepository {
@@ -19,7 +19,7 @@ class OrderRepositoryImpl implements OrderRepository {
   @override
   Future<Order> getAnOrder(int id) async {
     final orderEntity = _dataSource.getAnOrder(id);
-    final order = fromOrderEntity2OrderDomain(orderEntity);
+    final order = orderEntity.fromOrderEntity2OrderDomain();
     return order;
   }
 
@@ -27,7 +27,7 @@ class OrderRepositoryImpl implements OrderRepository {
   Future<List<Order>> getOrderList() async {
     final ordersEntity = _dataSource.getAll();
     final orders = ordersEntity
-        .map((orderEntity) => fromOrderEntity2OrderDomain(orderEntity))
+        .map((orderEntity) => orderEntity.fromOrderEntity2OrderDomain())
         .toList();
     return orders;
   }
@@ -42,24 +42,13 @@ class OrderRepositoryImpl implements OrderRepository {
     await _saveOrUpdate(order);
   }
 
-  Order fromOrderEntity2OrderDomain(OrderEntity orderEntity) => Order(
-      orderEntity.id,
-      orderEntity.status,
-      orderEntity.description,
-      orderEntity.price,
-      orderEntity.startAddress,
-      orderEntity.endAddress);
-
   Future _saveOrUpdate(Order order) async {
-    OrderEntity orderEntity = OrderEntity(
-        order.startAddress, order.endAddress, order.description, order.price);
-    orderEntity.id = order.id;
-    orderEntity.dbStatus = order.state.index;
+    OrderEntity orderEntity = order.fromOrder2OrderEntity();
+    orderEntity.customer.target =
+        order.customer.fromCustomerDomain2CustomerEntity();
+    orderEntity.deliveryCourier.target =
+        order.deliveryCourier.fromDeliveryCourierDomain2DeliveryCourierEntity();
 
-    var customerEntity = CustomerEntity(order.customer.name);
-    var deliveryCourierEntity = DeliveryCourierEntity("");
-    orderEntity.customer.target = customerEntity;
-    orderEntity.deliveryCourier.target = deliveryCourierEntity;
     _dataSource.saveOrUpdate(orderEntity);
   }
 }

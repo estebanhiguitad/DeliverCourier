@@ -1,6 +1,11 @@
 class DeliveryCourier {
-  final String name;
-  final int id;
+  final String _name;
 
-  const DeliveryCourier(this.id, this.name);
+  String get name => _name;
+
+  final int _id;
+
+  int get id => _id;
+
+  const DeliveryCourier(this._id, this._name);
 }
