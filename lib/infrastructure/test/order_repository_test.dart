@@ -57,6 +57,27 @@ void main() {
     expect(result.length, 2);
   });
 
+  test('getOrderList_get4OrderList_success', () async {
+    // Arrange
+    final repository = OrderRepositoryOb(store);
+    Order orderOne = OrderBuilder().build();
+    Order orderTwo = OrderBuilder().build();
+    Order orderThree = OrderBuilder().build();
+    Order orderFour = OrderBuilder().build();
+    Order orderFive = OrderBuilder().build();
+
+    // Act
+    await repository.save(orderOne);
+    await repository.save(orderTwo);
+    await repository.save(orderThree);
+    await repository.save(orderFour);
+    await repository.save(orderFive);
+    final result = await repository.getOrderList();
+
+    // Assert
+    expect(result.length, 5);
+  });
+
   test('update_order_success', () async {
     // Arrange
     final repository = OrderRepositoryOb(store);
@@ -72,5 +93,19 @@ void main() {
 
     // Assert
     expect(result.state, OrderState.onWay);
+  });
+
+  test('getAnOrder_order_success', () async {
+    // Arrange
+    final repository = OrderRepositoryOb(store);
+    Order order = OrderBuilder().build();
+    // Act
+    await repository.save(order);
+    final savedOrders = await repository.getOrderList();
+    final orderToReview = savedOrders
+        .firstWhere((element) => element.description == order.description);
+
+    // Assert
+    expect(order.description, orderToReview.description);
   });
 }
