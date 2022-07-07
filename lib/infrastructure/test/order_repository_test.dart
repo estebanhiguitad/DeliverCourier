@@ -1,6 +1,7 @@
 import 'package:domain/entities/order.dart';
 import 'package:domain/value_object/order_state.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:infrastructure/data_sources/order_object_box_data_source_impl.dart';
 import 'package:infrastructure/objectbox/customer_entity.dart';
 import 'package:infrastructure/objectbox/delivery_couriers_entity.dart';
 import 'package:infrastructure/objectbox/order_entity.dart';
@@ -29,7 +30,7 @@ void main() {
 
   test('save_order_success', () async {
     // Arrange
-    final repository = OrderRepositoryImpl(store);
+    final repository = OrderRepositoryImpl(OrderObjectBoxDataSourceImpl(store));
     Order order = OrderBuilder().build();
 
     // Act
@@ -43,7 +44,7 @@ void main() {
 
   test('save_save2orders_success', () async {
     // Arrange
-    final repository = OrderRepositoryImpl(store);
+    final repository = OrderRepositoryImpl(OrderObjectBoxDataSourceImpl(store));
     Order orderOne = OrderBuilder().build();
     Order orderTwo =
         OrderBuilder().withDescription("This is other order").build();
@@ -59,7 +60,7 @@ void main() {
 
   test('getOrderList_get4OrderList_success', () async {
     // Arrange
-    final repository = OrderRepositoryImpl(store);
+    final repository = OrderRepositoryImpl(OrderObjectBoxDataSourceImpl(store));
     Order orderOne = OrderBuilder().build();
     Order orderTwo = OrderBuilder().build();
     Order orderThree = OrderBuilder().build();
@@ -80,7 +81,7 @@ void main() {
 
   test('update_order_success', () async {
     // Arrange
-    final repository = OrderRepositoryImpl(store);
+    final repository = OrderRepositoryImpl(OrderObjectBoxDataSourceImpl(store));
     Order order =
         OrderBuilder().withId(1).withState(OrderState.received).build();
     await repository.save(order);
@@ -97,7 +98,7 @@ void main() {
 
   test('getAnOrder_order_success', () async {
     // Arrange
-    final repository = OrderRepositoryImpl(store);
+    final repository = OrderRepositoryImpl(OrderObjectBoxDataSourceImpl(store));
     Order order = OrderBuilder().build();
     // Act
     await repository.save(order);

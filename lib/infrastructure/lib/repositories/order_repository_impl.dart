@@ -1,20 +1,15 @@
 import 'package:domain/entities/order.dart';
 import 'package:domain/repositories/order_repository.dart';
-import 'package:infrastructure/objectbox.g.dart' as object_box;
 import 'package:infrastructure/translates/from_database_translate.dart';
 import 'package:infrastructure/translates/from_domain_translate.dart';
 
 import '../data_sources/order_object_box_data_source.dart';
-import '../data_sources/order_object_box_data_source_impl.dart';
 import '../objectbox/order_entity.dart';
 
 class OrderRepositoryImpl implements OrderRepository {
-  final object_box.Store store;
-  late OrderObjectBoxDataSource _dataSource;
+  final OrderObjectBoxDataSource _dataSource;
 
-  OrderRepositoryImpl(this.store) {
-    _dataSource = OrderObjectBoxDataSourceImpl(store);
-  }
+  OrderRepositoryImpl(this._dataSource);
 
   @override
   Future<Order> getAnOrder(int id) async {
