@@ -17,13 +17,13 @@ class OrderRepositoryFake implements OrderRepository {
   }
 
   @override
-  void updateOrder(Order order) {
+  Future updateOrder(Order order) async {
     _list.removeWhere((element) => element.id == order.id);
     _list.add(order);
   }
 
   @override
-  void save(Order order) {
+  Future save(Order order) async {
     _list.add(order);
   }
 }
