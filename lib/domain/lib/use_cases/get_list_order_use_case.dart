@@ -1,6 +1,6 @@
 import 'package:domain/exceptions/no_data_exception.dart';
 
-import '../models/order.dart';
+import '../entities/order.dart';
 import '../repositories/order_repository.dart';
 
 class GetListOrderService {

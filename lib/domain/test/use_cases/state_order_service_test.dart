@@ -1,6 +1,6 @@
-import 'package:domain/models/order.dart';
-import 'package:domain/models/order_state.dart';
+import 'package:domain/entities/order.dart';
 import 'package:domain/use_cases/change_state_order_service.dart';
+import 'package:domain/value_object/order_state.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../models/order_builder.dart';

@@ -1,5 +1,4 @@
-
-import 'package:domain/models/order.dart';
+import 'package:domain/entities/order.dart';
 import 'package:domain/repositories/order_repository.dart';
 
 import '../models/order_builder.dart';

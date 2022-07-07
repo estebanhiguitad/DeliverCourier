@@ -1,5 +1,5 @@
-import 'package:domain/models/order.dart';
 
+import '../entities/order.dart';
 import '../repositories/order_repository.dart';
 
 class ChangeStateOrderService {

@@ -1,5 +1,6 @@
-import 'package:domain/models/order.dart';
 import 'package:domain/repositories/order_repository.dart';
+
+import '../entities/order.dart';
 
 class SaveNewOrderService {
   OrderRepository repository;
