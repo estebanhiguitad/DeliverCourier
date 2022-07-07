@@ -1,26 +1,31 @@
 import 'package:domain/entities/order.dart';
 import 'package:domain/repositories/order_repository.dart';
+import 'package:infrastructure/datasources/order_object_box_data_source.dart';
+import 'package:infrastructure/datasources/order_object_box_data_source_impl.dart';
 import 'package:infrastructure/objectbox.g.dart' as object_box;
 import 'package:infrastructure/objectbox/customer_entity.dart';
 import 'package:infrastructure/objectbox/delivery_couriers_entity.dart';
 
 import '../objectbox/order_entity.dart';
 
-class OrderRepositoryOb implements OrderRepository {
+class OrderRepositoryImpl implements OrderRepository {
   final object_box.Store store;
+  late OrderObjectBoxDataSource _dataSource;
 
-  OrderRepositoryOb(this.store);
+  OrderRepositoryImpl(this.store) {
+    _dataSource = OrderObjectBoxDataSourceImpl(store);
+  }
 
   @override
   Future<Order> getAnOrder(int id) async {
-    final orderEntity = store.box<OrderEntity>().get(id)!;
+    final orderEntity = _dataSource.getAnOrder(id);
     final order = fromOrderEntity2OrderDomain(orderEntity);
     return order;
   }
 
   @override
   Future<List<Order>> getOrderList() async {
-    final ordersEntity = store.box<OrderEntity>().getAll();
+    final ordersEntity = _dataSource.getAll();
     final orders = ordersEntity
         .map((orderEntity) => fromOrderEntity2OrderDomain(orderEntity))
         .toList();
@@ -55,9 +60,6 @@ class OrderRepositoryOb implements OrderRepository {
     var deliveryCourierEntity = DeliveryCourierEntity("");
     orderEntity.customer.target = customerEntity;
     orderEntity.deliveryCourier.target = deliveryCourierEntity;
-    store.box<OrderEntity>().put(orderEntity);
-    store.box<OrderEntity>().put(orderEntity);
-    store.box<OrderEntity>().put(orderEntity);
-    store.box<OrderEntity>().put(orderEntity);
+    _dataSource.saveOrUpdate(orderEntity);
   }
 }

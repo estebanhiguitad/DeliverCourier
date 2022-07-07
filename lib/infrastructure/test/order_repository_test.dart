@@ -4,7 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:infrastructure/objectbox/customer_entity.dart';
 import 'package:infrastructure/objectbox/delivery_couriers_entity.dart';
 import 'package:infrastructure/objectbox/order_entity.dart';
-import 'package:infrastructure/repositories/order_repository_ob.dart';
+import 'package:infrastructure/repositories/order_repository_impl.dart';
 import 'package:objectbox/objectbox.dart' as object_box;
 
 import 'models/order_builder.dart';
@@ -29,7 +29,7 @@ void main() {
 
   test('save_order_success', () async {
     // Arrange
-    final repository = OrderRepositoryOb(store);
+    final repository = OrderRepositoryImpl(store);
     Order order = OrderBuilder().build();
 
     // Act
@@ -43,7 +43,7 @@ void main() {
 
   test('save_save2orders_success', () async {
     // Arrange
-    final repository = OrderRepositoryOb(store);
+    final repository = OrderRepositoryImpl(store);
     Order orderOne = OrderBuilder().build();
     Order orderTwo =
         OrderBuilder().withDescription("This is other order").build();
@@ -59,7 +59,7 @@ void main() {
 
   test('getOrderList_get4OrderList_success', () async {
     // Arrange
-    final repository = OrderRepositoryOb(store);
+    final repository = OrderRepositoryImpl(store);
     Order orderOne = OrderBuilder().build();
     Order orderTwo = OrderBuilder().build();
     Order orderThree = OrderBuilder().build();
@@ -80,7 +80,7 @@ void main() {
 
   test('update_order_success', () async {
     // Arrange
-    final repository = OrderRepositoryOb(store);
+    final repository = OrderRepositoryImpl(store);
     Order order =
         OrderBuilder().withId(1).withState(OrderState.received).build();
     await repository.save(order);
@@ -97,7 +97,7 @@ void main() {
 
   test('getAnOrder_order_success', () async {
     // Arrange
-    final repository = OrderRepositoryOb(store);
+    final repository = OrderRepositoryImpl(store);
     Order order = OrderBuilder().build();
     // Act
     await repository.save(order);
