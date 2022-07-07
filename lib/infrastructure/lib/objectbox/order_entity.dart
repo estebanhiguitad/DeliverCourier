@@ -1,4 +1,4 @@
-import 'package:domain/models/order_state.dart';
+import 'package:domain/value_object/order_state.dart';
 import 'package:infrastructure/objectbox/customer_entity.dart';
 import 'package:infrastructure/objectbox/delivery_couriers_entity.dart';
 import 'package:objectbox/objectbox.dart';

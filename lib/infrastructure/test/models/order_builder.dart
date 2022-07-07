@@ -1,5 +1,5 @@
-import 'package:domain/models/order.dart';
-import 'package:domain/models/order_state.dart';
+import 'package:domain/entities/order.dart';
+import 'package:domain/value_object/order_state.dart';
 
 class OrderBuilder {
   int id = 0;
