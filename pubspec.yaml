@@ -1,5 +1,6 @@
 name: delivery
 description: Delivery project.
+publish_to: none
 
 version: 1.0.0+1
 
@@ -9,6 +10,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  presentation:
+    path: "lib/presentation"
+
   cupertino_icons: ^1.0.2
   dartz: ^0.10.1
   rxdart: ^0.27.4

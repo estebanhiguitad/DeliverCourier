@@ -1,3 +1,4 @@
+import 'package:delivery/presentation/list_orders/list_orders_screen.dart';
 import 'package:flutter/material.dart';
 
 class DeliveryApp extends StatelessWidget {
@@ -9,12 +10,7 @@ class DeliveryApp extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Delivery'),
       ),
-      body: SafeArea(
-        child: ElevatedButton(
-          onPressed: () {},
-          child: const Text('Delivery'),
-        ),
-      ),
+      body: SafeArea(child: ListOrdersScreen()),
     );
   }
 }

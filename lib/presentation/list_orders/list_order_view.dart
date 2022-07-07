@@ -1,5 +1,5 @@
+import 'package:delivery/presentation/list_orders/item_order.dart';
 import 'package:flutter/material.dart';
-import 'package:presentation/list_orders/item_order.dart';
 
 class ListOrdersView extends StatelessWidget {
   const ListOrdersView({Key? key}) : super(key: key);
@@ -10,8 +10,11 @@ class ListOrdersView extends StatelessWidget {
   }
 
   Widget _listOrders() {
-    return Column(
-      children: [ItemOrder()],
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 24.0),
+      child: Column(
+        children: [ItemOrder()],
+      ),
     );
   }
 }

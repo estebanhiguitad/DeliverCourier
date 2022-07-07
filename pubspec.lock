@@ -396,6 +396,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.5.1"
+  presentation:
+    dependency: "direct main"
+    description:
+      path: "lib/presentation"
+      relative: true
+    source: path
+    version: "0.0.1"
   provider:
     dependency: transitive
     description:
@@ -550,4 +557,4 @@ packages:
     version: "3.1.1"
 sdks:
   dart: ">=2.17.3 <3.0.0"
-  flutter: ">=1.16.0"
+  flutter: ">=1.17.0"
