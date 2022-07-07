@@ -1,5 +1,5 @@
 
-import '../models/order.dart';
+import '../entities/order.dart';
 
 abstract class OrderRepository {
   Future<List<Order>> getOrderList();
