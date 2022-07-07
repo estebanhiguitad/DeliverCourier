@@ -20,12 +20,12 @@ class OrderRepositoryStub implements OrderRepository {
   }
 
   @override
-  void save(Order order) {
+  Future save(Order order) async {
     // not implement save
   }
 
   @override
-  void updateOrder(Order order) {
+  Future updateOrder(Order order) async {
     // not implement updateOrder
   }
 }

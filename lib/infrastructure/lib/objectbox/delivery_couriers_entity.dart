@@ -2,10 +2,10 @@ import 'package:infrastructure/objectbox/order_entity.dart';
 import 'package:objectbox/objectbox.dart';
 
 @Entity()
-class DeliveryCouriers {
+class DeliveryCourierEntity {
   int id = 0;
   String name;
   final orders = ToMany<OrderEntity>();
 
-  DeliveryCouriers(this.name);
+  DeliveryCourierEntity(this.name);
 }

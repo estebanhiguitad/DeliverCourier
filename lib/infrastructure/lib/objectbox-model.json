@@ -29,31 +29,6 @@
       ]
     },
     {
-      "id": "2:5736264567342123544",
-      "lastPropertyId": "2:1732661641900783800",
-      "name": "DeliveryCouriers",
-      "properties": [
-        {
-          "id": "1:1543859281863126272",
-          "name": "id",
-          "type": 6,
-          "flags": 1
-        },
-        {
-          "id": "2:1732661641900783800",
-          "name": "name",
-          "type": 9
-        }
-      ],
-      "relations": [
-        {
-          "id": "2:4090942074330875531",
-          "name": "orders",
-          "targetId": "4:8509845063059958369"
-        }
-      ]
-    },
-    {
       "id": "4:8509845063059958369",
       "lastPropertyId": "8:4912518275061071388",
       "name": "OrderEntity",
@@ -62,7 +37,7 @@
           "id": "1:2103203214249846365",
           "name": "id",
           "type": 6,
-          "flags": 1
+          "flags": 129
         },
         {
           "id": "2:390881710027923563",
@@ -98,7 +73,7 @@
           "type": 11,
           "flags": 520,
           "indexId": "4:7884648788057106578",
-          "relationTarget": "DeliveryCouriers"
+          "relationTarget": "DeliveryCourierEntity"
         },
         {
           "id": "8:4912518275061071388",
@@ -107,16 +82,42 @@
         }
       ],
       "relations": []
+    },
+    {
+      "id": "5:2246503608281985381",
+      "lastPropertyId": "2:7713172737337661822",
+      "name": "DeliveryCourierEntity",
+      "properties": [
+        {
+          "id": "1:1529467813623005747",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:7713172737337661822",
+          "name": "name",
+          "type": 9
+        }
+      ],
+      "relations": [
+        {
+          "id": "3:54124503058649627",
+          "name": "orders",
+          "targetId": "4:8509845063059958369"
+        }
+      ]
     }
   ],
-  "lastEntityId": "4:8509845063059958369",
+  "lastEntityId": "5:2246503608281985381",
   "lastIndexId": "4:7884648788057106578",
-  "lastRelationId": "2:4090942074330875531",
+  "lastRelationId": "3:54124503058649627",
   "lastSequenceId": "0:0",
   "modelVersion": 5,
   "modelVersionParserMinimum": 5,
   "retiredEntityUids": [
-    1123093398655243550
+    1123093398655243550,
+    5736264567342123544
   ],
   "retiredIndexUids": [],
   "retiredPropertyUids": [
@@ -128,7 +129,9 @@
     5337518520694797369,
     5695452435750763817,
     3796933737966857893,
-    4188407943025035100
+    4188407943025035100,
+    1543859281863126272,
+    1732661641900783800
   ],
   "retiredRelationUids": [],
   "version": 1
