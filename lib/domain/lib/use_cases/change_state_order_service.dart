@@ -2,10 +2,10 @@ import 'package:domain/models/order.dart';
 
 import '../repositories/order_repository.dart';
 
-class StateOrderService {
+class ChangeStateOrderService {
   final OrderRepository _orderRepository;
 
-  StateOrderService(this._orderRepository);
+  ChangeStateOrderService(this._orderRepository);
 
   void updateOrderState(Order order) {
     order.changeStateToNext();

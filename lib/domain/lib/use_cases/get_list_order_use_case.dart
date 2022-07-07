@@ -3,10 +3,10 @@ import 'package:domain/exceptions/no_data_exception.dart';
 import '../models/order.dart';
 import '../repositories/order_repository.dart';
 
-class ListOrderService {
+class GetListOrderService {
   OrderRepository repository;
 
-  ListOrderService(this.repository);
+  GetListOrderService(this.repository);
 
   Future<List<Order>> getOrderList() async {
     final result = await repository.getOrderList();
