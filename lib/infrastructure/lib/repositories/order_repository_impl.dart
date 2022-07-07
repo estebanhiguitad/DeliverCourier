@@ -4,8 +4,8 @@ import 'package:infrastructure/objectbox.g.dart' as object_box;
 import 'package:infrastructure/translates/from_database_translate.dart';
 import 'package:infrastructure/translates/from_domain_translate.dart';
 
-import '../datasources/order_object_box_data_source.dart';
-import '../datasources/order_object_box_data_source_impl.dart';
+import '../data_sources/order_object_box_data_source.dart';
+import '../data_sources/order_object_box_data_source_impl.dart';
 import '../objectbox/order_entity.dart';
 
 class OrderRepositoryImpl implements OrderRepository {
