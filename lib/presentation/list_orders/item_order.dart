@@ -6,9 +6,10 @@ class ItemOrder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: const EdgeInsets.symmetric(vertical: 8),
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(8),
         border: Border.all(color: Colors.grey, width: 1.5),
       ),
       child: Column(
@@ -24,11 +25,21 @@ class ItemOrder extends StatelessWidget {
               Text('Recibido'),
             ],
           ),
-          Text('Description'),
-          Text(
-            '\$5.000',
-            textAlign: TextAlign.right,
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          SizedBox(height: 4),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text('Recoger en: Calle 36 # 10 - 48'),
+              Text('Descripción: Solicitar almuerzo'),
+            ],
+          ),
+          SizedBox(height: 4),
+          Align(
+            alignment: Alignment.centerRight,
+            child: Text(
+              '\$5.000',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
           ),
         ],
       ),
