@@ -7,8 +7,24 @@ import 'package:infrastructure/objectbox/delivery_couriers_entity.dart';
 import '../objectbox/order_entity.dart';
 
 extension TranslateOrderFromDataBase on OrderEntity {
-  Order fromOrderEntity2OrderDomain() =>
-      Order(id, status, description, price, startAddress, endAddress);
+  Order fromOrderEntity2OrderDomain() {
+    late Customer customerDomain;
+    if (customer.target != null) {
+      final entity = customer.target!;
+      customerDomain = Customer(entity.id, entity.name);
+    }
+
+    late DeliveryCourier deliveryCourierDomain;
+    if (deliveryCourier.target != null) {
+      final entity = deliveryCourier.target!;
+      deliveryCourierDomain = DeliveryCourier(entity.id, entity.name);
+    }
+
+    final order = Order(
+        id, status, description, price, startAddress, endAddress,
+        customer: customerDomain, deliveryCourier: deliveryCourierDomain);
+    return order;
+  }
 }
 
 extension TranslateCustomerFromDatabase on CustomerEntity {
