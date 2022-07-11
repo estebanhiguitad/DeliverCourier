@@ -1,6 +1,7 @@
 import 'package:domain/entities/customer.dart';
 import 'package:domain/entities/delivery_courier.dart';
 import 'package:domain/entities/order.dart' as domain;
+import 'package:domain/repositories/order_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:infrastructure/data_sources/order_object_box_data_source_impl.dart';
 import 'package:infrastructure/repositories/order_repository_impl.dart';
@@ -12,10 +13,12 @@ import 'object_box_env/test_env.dart';
 void main() {
   late Store store;
   late TestEnv env;
+  late OrderRepository repository;
 
   setUp(() {
     env = TestEnv('relation-tests');
     store = env.store;
+    repository = OrderRepositoryImpl(OrderObjectBoxDataSourceImpl(store));
   });
 
   tearDown(() {
@@ -25,7 +28,6 @@ void main() {
   test('getOrderList_customerUpdatedName_success', () async {
     // Arrange
     final order = OrderBuilder().build();
-    final repository = OrderRepositoryImpl(OrderObjectBoxDataSourceImpl(store));
     repository.save(order);
     const expectedName = "New Customer for Order";
     final oldOrder = await repository.getAnOrder(1);
@@ -49,7 +51,6 @@ void main() {
   test('getOrderList_deliveryCourierUpdatedName_success', () async {
     // Arrange
     final order = OrderBuilder().build();
-    final repository = OrderRepositoryImpl(OrderObjectBoxDataSourceImpl(store));
     repository.save(order);
     const expectedName = "New Delivery Courier for Order";
     final oldOrder = await repository.getAnOrder(1);
