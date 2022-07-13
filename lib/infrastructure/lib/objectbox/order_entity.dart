@@ -32,5 +32,6 @@ class OrderEntity {
   final customer = ToOne<CustomerEntity>();
   final deliveryCourier = ToOne<DeliveryCourierEntity>();
 
-  OrderEntity(this.startAddress, this.endAddress, this.description, this.price);
+  OrderEntity(this.startAddress, this.endAddress, this.description, this.price,
+      {this.status = OrderState.received});
 }
