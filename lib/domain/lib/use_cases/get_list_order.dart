@@ -4,12 +4,12 @@ import '../entities/order.dart';
 import '../repositories/order_repository.dart';
 
 class GetListOrder {
-  OrderRepository repository;
+  GetListOrder(this._orderRepository);
 
-  GetListOrder(this.repository);
+  final OrderRepository _orderRepository;
 
-  Future<List<Order>> getOrderList() async {
-    final result = await repository.getOrderList();
+  Future<List<Order>> call() async {
+    final result = await _orderRepository.getOrderList();
     if (result.isEmpty) {
       throw NoDataException();
     }

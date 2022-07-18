@@ -3,11 +3,11 @@ import 'package:domain/repositories/order_repository.dart';
 import '../entities/order.dart';
 
 class SaveNewOrder {
-  OrderRepository repository;
+  SaveNewOrder(this._orderRepository);
 
-  SaveNewOrder(this.repository);
+  final OrderRepository _orderRepository;
 
-  void save(Order order) {
-    repository.save(order);
+  void call(Order order) {
+    _orderRepository.save(order);
   }
 }

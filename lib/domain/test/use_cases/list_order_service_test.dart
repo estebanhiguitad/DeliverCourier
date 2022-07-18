@@ -11,7 +11,7 @@ void main() {
     final service = GetListOrder(OrderRepositoryStub());
 
     // Act
-    final result = await service.getOrderList();
+    final result = await service();
 
     // Assert
     expect(result.length, 2);
@@ -23,7 +23,6 @@ void main() {
 
     // Act
     // Assert
-    expect(() async => await service.getOrderList(),
-        throwsA(isA<NoDataException>()));
+    expect(() async => await service(), throwsA(isA<NoDataException>()));
   });
 }

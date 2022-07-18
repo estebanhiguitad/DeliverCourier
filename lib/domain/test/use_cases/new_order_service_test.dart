@@ -13,7 +13,7 @@ void main() {
     final service = SaveNewOrder(repository);
 
     // Act
-    service.save(order);
+    service(order);
     final result = await repository.getOrderList();
 
     // Assert

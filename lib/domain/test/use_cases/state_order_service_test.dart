@@ -14,7 +14,7 @@ void main() {
     Order order = OrderBuilder().build();
 
     // Act
-    service.updateOrderState(order);
+    service(order);
     final result = await repository.getAnOrder(order.id);
 
     // Assert
@@ -28,7 +28,7 @@ void main() {
     Order order = OrderBuilder().withState(OrderState.onWay).build();
 
     // Act
-    service.updateOrderState(order);
+    service(order);
     final result = await repository.getAnOrder(order.id);
 
     // Assert
@@ -42,7 +42,7 @@ void main() {
     Order order = OrderBuilder().withState(OrderState.onWay).build();
 
     // Act
-    service.updateOrderState(order);
+    service(order);
     final result = await repository.getAnOrder(order.id);
 
     // Assert
@@ -56,7 +56,7 @@ void main() {
     Order order = OrderBuilder().withState(OrderState.delivered).build();
 
     // Act
-    service.updateOrderState(order);
+    service(order);
     final result = await repository.getAnOrder(order.id);
 
     // Assert

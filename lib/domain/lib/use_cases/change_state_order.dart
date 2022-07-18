@@ -6,7 +6,7 @@ class ChangeStateOrder {
 
   ChangeStateOrder(this._orderRepository);
 
-  void updateOrderState(Order order) {
+  void call(Order order) {
     order.changeStateToNext();
     _orderRepository.updateOrder(order);
   }
