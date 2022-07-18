@@ -1,3 +1,4 @@
+import 'package:delivery/presentation/new_order/new_order_view.dart';
 import 'package:flutter/material.dart';
 
 class NewOrderScreen extends StatelessWidget {
@@ -5,6 +6,6 @@ class NewOrderScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return NewOrderView();
   }
 }
