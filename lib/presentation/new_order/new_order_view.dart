@@ -1,4 +1,6 @@
+import 'package:delivery/presentation/new_order/bloc/new_order_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class NewOrderView extends StatelessWidget {
   const NewOrderView({Key? key}) : super(key: key);
@@ -54,11 +56,15 @@ class NewOrderView extends StatelessWidget {
   }
 
   Widget _buttonSave() {
-    return ElevatedButton(onPressed: null, child: Text('Crear pedido'));
-
-    return Container(
-      decoration: BoxDecoration(borderRadius: BorderRadius.circular(16)),
-      child: Text('Crear pedido'),
+    return BlocBuilder<NewOrderBloc, NewOrderState>(
+      builder: (context, state) {
+        return ElevatedButton(
+            onPressed: () {
+              final newOrderBloc = context.read<NewOrderBloc>();
+              //newOrderBloc.add(NewOrderSubmitted(order));
+            },
+            child: Text('Crear pedido'));
+      },
     );
   }
 }

@@ -10,8 +10,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  presentation:
-    path: "lib/presentation"
+  domain:
+    path: "lib/domain"
 
   cupertino_icons: ^1.0.2
   dartz: ^0.10.1

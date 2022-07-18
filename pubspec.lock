@@ -176,6 +176,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.10.1"
+  domain:
+    dependency: "direct main"
+    description:
+      path: "lib/domain"
+      relative: true
+    source: path
+    version: "0.0.1"
   fake_async:
     dependency: transitive
     description:
@@ -396,13 +403,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.5.1"
-  presentation:
-    dependency: "direct main"
-    description:
-      path: "lib/presentation"
-      relative: true
-    source: path
-    version: "0.0.1"
   provider:
     dependency: transitive
     description:
