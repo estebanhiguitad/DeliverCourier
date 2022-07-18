@@ -1,11 +1,10 @@
-
 import '../entities/order.dart';
 import '../repositories/order_repository.dart';
 
-class ChangeStateOrderService {
+class ChangeStateOrder {
   final OrderRepository _orderRepository;
 
-  ChangeStateOrderService(this._orderRepository);
+  ChangeStateOrder(this._orderRepository);
 
   void updateOrderState(Order order) {
     order.changeStateToNext();

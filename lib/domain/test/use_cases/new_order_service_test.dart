@@ -1,5 +1,5 @@
 import 'package:domain/repositories/order_repository.dart';
-import 'package:domain/use_cases/save_new_order_service.dart';
+import 'package:domain/use_cases/save_new_order.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../models/order_builder.dart';
@@ -10,7 +10,7 @@ void main() {
     // Arrange
     final order = OrderBuilder().withId(1).build();
     OrderRepository repository = OrderRepositoryFake([order]);
-    final service = SaveNewOrderService(repository);
+    final service = SaveNewOrder(repository);
 
     // Act
     service.save(order);
