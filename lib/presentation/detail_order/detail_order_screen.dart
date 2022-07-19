@@ -41,7 +41,36 @@ class DetailOrderScreen extends StatelessWidget {
   Widget _status() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: [Text('Recibido'), Text('En camino'), Text('Entregado')],
+      children: [
+        _itemStatus(
+          icon: Icons.check_circle_outline_outlined,
+          labelText: 'Recibido',
+          onTap: () {},
+        ),
+        _itemStatus(
+          icon: Icons.check_circle_outline_outlined,
+          labelText: 'En camino',
+          onTap: () {},
+        ),
+        _itemStatus(
+          icon: Icons.check_circle_outline_outlined,
+          labelText: 'Entregado',
+          onTap: () {},
+        ),
+      ],
+    );
+  }
+
+  Widget _itemStatus({
+    required IconData icon,
+    required String labelText,
+    required Function() onTap,
+  }) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Row(
+        children: [Icon(icon), const SizedBox(width: 8), Text(labelText)],
+      ),
     );
   }
 }

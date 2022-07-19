@@ -45,6 +45,7 @@ class NewOrderView extends StatelessWidget {
             border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
           ),
         ),
+        SizedBox(height: 8),
         TextFormField(
           controller: endAddressCtrl,
           decoration: InputDecoration(
@@ -52,6 +53,7 @@ class NewOrderView extends StatelessWidget {
             border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
           ),
         ),
+        SizedBox(height: 8),
         TextFormField(
           controller: priceCtrl,
           decoration: InputDecoration(
@@ -59,6 +61,7 @@ class NewOrderView extends StatelessWidget {
             border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
           ),
         ),
+        SizedBox(height: 8),
         TextFormField(
           controller: descriptionCtrl,
           decoration: InputDecoration(
@@ -71,7 +74,8 @@ class NewOrderView extends StatelessWidget {
   }
 
   Widget _buttonSave() {
-    return BlocBuilder<NewOrderBloc, NewOrderState>(
+    return BlocConsumer<NewOrderBloc, NewOrderState>(
+      listener: (context, state) {},
       builder: (context, state) {
         return ElevatedButton(
             onPressed: () {
