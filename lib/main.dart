@@ -3,14 +3,16 @@ import 'package:delivery/di_container.dart';
 import 'package:delivery/theme.dart';
 import 'package:flutter/material.dart';
 
+import 'routes.dart';
+
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   initDiContainer();
-  runApp(const MyApp());
+  runApp(const DeliveryCourierApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class DeliveryCourierApp extends StatelessWidget {
+  const DeliveryCourierApp({Key? key}) : super(key: key);
 
   static const nameApp = 'Delivery';
 
@@ -18,8 +20,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: nameApp,
-      theme: customThemen,
-      home: const DeliveryApp(),
+      theme: customTheme,
+      routes: routes(context),
+      initialRoute: "/",
     );
   }
 }
