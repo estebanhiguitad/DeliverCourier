@@ -7,7 +7,7 @@ class SaveNewOrder {
 
   final OrderRepository _orderRepository;
 
-  void call(Order order) {
+  Future call(Order order) async {
     _orderRepository.save(order);
   }
 }

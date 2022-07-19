@@ -8,9 +8,14 @@ class NewOrderScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return NewOrderView();
+    /*
     return BlocProvider(
       create: (context) => NewOrderBloc(),
       child: NewOrderView(),
     );
+  
+
+  */
   }
 }
