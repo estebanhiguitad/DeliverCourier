@@ -1,9 +1,17 @@
 import 'package:delivery/presentation/new_order/bloc/new_order_bloc.dart';
+import 'package:domain/value_object/order_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:uuid/uuid.dart';
+import 'package:domain/domain.dart';
 
 class NewOrderView extends StatelessWidget {
-  const NewOrderView({Key? key}) : super(key: key);
+  NewOrderView({Key? key}) : super(key: key);
+
+  final startAddressCtrl = TextEditingController();
+  final endAddressCtrl = TextEditingController();
+  final priceCtrl = TextEditingController();
+  final descriptionCtrl = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -31,26 +39,33 @@ class NewOrderView extends StatelessWidget {
         child: Column(
       children: [
         TextFormField(
+          controller: startAddressCtrl,
           decoration: InputDecoration(
             label: Text('Dirección para recoger'),
             border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
           ),
         ),
         TextFormField(
-            decoration: InputDecoration(
-          label: Text('Dirección de entrega'),
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
-        )),
+          controller: endAddressCtrl,
+          decoration: InputDecoration(
+            label: Text('Dirección de entrega'),
+            border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
+          ),
+        ),
         TextFormField(
-            decoration: InputDecoration(
-          label: Text('Cuanto ofreces pagar'),
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
-        )),
+          controller: priceCtrl,
+          decoration: InputDecoration(
+            label: Text('Cuanto ofreces pagar'),
+            border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
+          ),
+        ),
         TextFormField(
-            decoration: InputDecoration(
-          label: Text('Agrega una descripción'),
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
-        )),
+          controller: descriptionCtrl,
+          decoration: InputDecoration(
+            label: Text('Agrega una descripción'),
+            border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
+          ),
+        ),
       ],
     ));
   }
@@ -60,8 +75,16 @@ class NewOrderView extends StatelessWidget {
       builder: (context, state) {
         return ElevatedButton(
             onPressed: () {
+              final order = Order(
+                1,
+                OrderState.delivered,
+                descriptionCtrl.text,
+                int.parse(priceCtrl.text),
+                startAddressCtrl.text,
+                endAddressCtrl.text,
+              );
               final newOrderBloc = context.read<NewOrderBloc>();
-              //newOrderBloc.add(NewOrderSubmitted(order));
+              newOrderBloc.add(NewOrderSubmitted(order));
             },
             child: Text('Crear pedido'));
       },
