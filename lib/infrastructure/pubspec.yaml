@@ -2,6 +2,7 @@ name: infrastructure
 description: A new Flutter package project.
 version: 0.0.1
 homepage:
+publish_to: none
 
 environment:
   sdk: ">=2.17.3 <3.0.0"
@@ -10,11 +11,16 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  domain: 
+    path: "../domain"
+  hive: ^2.2.2
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.0
+  hive_generator: ^1.1.3
+  build_runner: ^2.1.11
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
