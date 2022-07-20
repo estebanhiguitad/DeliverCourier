@@ -34,33 +34,7 @@ class DeliveryApp extends StatelessWidget {
   }
 
   Widget buildBody(BuildContext context) {
-    final service = GetListOrder(OrderRepositoryFake([]));
-    return SafeArea(
-      child: Expanded(
-        child: Center(
-          child: FutureBuilder(
-            future: service(),
-            builder: (context, AsyncSnapshot<List<Order>> snapshot) {
-              if (snapshot.hasData) {
-                final data = snapshot.data ?? [];
-                return ListView.builder(
-                    itemCount: data.length,
-                    itemBuilder: (context, index) {
-                      return Text(data[index].description);
-                    });
-              }
-
-              if (snapshot.hasError) {
-                final Exception exception = snapshot.error as Exception;
-                return buildNoOrdersView(context, exception.toString());
-              }
-
-              return CircularProgressIndicator();
-            },
-          ),
-        ),
-      ),
-    );
+    return Container();
   }
 
   Column buildNoOrdersView(BuildContext context, String message) {

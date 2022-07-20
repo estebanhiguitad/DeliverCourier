@@ -3,6 +3,8 @@ import 'customer.dart';
 import 'delivery_courier.dart';
 
 class Order {
+  final String uid;
+
   final int _id;
 
   final Customer customer;
@@ -32,6 +34,7 @@ class Order {
   String get endAddress => _endAddress;
 
   Order(
+    this.uid,
     this._id,
     this._state,
     this._description,

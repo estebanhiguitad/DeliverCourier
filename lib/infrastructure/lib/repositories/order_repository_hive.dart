@@ -9,7 +9,7 @@ class OrderRepositoryHive implements OrderRepository {
 
   @override
   Future<Order> getAnOrder(int id) async {
-    return _orderHiveBox.getById(id);
+    return _orderHiveBox.getByUid(id.toString());
   }
 
   @override

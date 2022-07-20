@@ -14,7 +14,7 @@ class OrderHiveBox {
 
   add(Order order) {
     final orderHiveEntity = _orderHiveMapper.toOrderHiveEntity(order);
-    _orderHiveEntityBox.add(orderHiveEntity);
+    _orderHiveEntityBox.put(orderHiveEntity.uid, orderHiveEntity);
   }
 
   List<Order> get() {
@@ -24,28 +24,25 @@ class OrderHiveBox {
     return orders;
   }
 
-  Order getById(int id) {
-    final orderHiveEntity = _orderHiveEntityBox.getAt(id);
-    if (orderHiveEntity == null) {
-      throw Exception();
-    }
+  Order getByUid(String uid) {
+    final orderHiveEntity = _getOrderHiveEntity(uid);
     final order = _orderHiveMapper.toOrder(orderHiveEntity);
     return order;
   }
 
   update(Order order) {
-    final orderHiveEntity = _getAt(order.id);
+    final orderHiveEntity = _getOrderHiveEntity(order.uid);
     orderHiveEntity.startAddress = order.startAddress;
     orderHiveEntity.save();
   }
 
   delete(Order order) {
-    final orderHiveEntity = _getAt(order.id);
+    final orderHiveEntity = _getOrderHiveEntity(order.uid);
     orderHiveEntity.delete();
   }
 
-  OrderHiveEntity _getAt(int id) {
-    final orderHiveEntity = _orderHiveEntityBox.getAt(id);
+  OrderHiveEntity _getOrderHiveEntity(String uid) {
+    final orderHiveEntity = _orderHiveEntityBox.get(uid);
     if (orderHiveEntity == null) {
       throw Exception();
     }

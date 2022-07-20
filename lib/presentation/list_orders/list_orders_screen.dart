@@ -6,6 +6,6 @@ class ListOrdersScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListOrdersView();
+    return Scaffold(body: ListOrdersView());
   }
 }

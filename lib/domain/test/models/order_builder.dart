@@ -2,6 +2,7 @@ import 'package:domain/entities/order.dart';
 import 'package:domain/value_object/order_state.dart';
 
 class OrderBuilder {
+  String uid = 'uid';
   int id = 0;
   OrderState state = OrderState.received;
   String description = "Description";
@@ -20,5 +21,5 @@ class OrderBuilder {
   }
 
   Order build() =>
-      Order(id, state, description, price, startAddress, endAddress);
+      Order(uid, id, state, description, price, startAddress, endAddress);
 }

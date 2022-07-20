@@ -80,6 +80,7 @@ class NewOrderView extends StatelessWidget {
         return ElevatedButton(
             onPressed: () {
               final order = Order(
+                '',
                 1,
                 OrderState.delivered,
                 descriptionCtrl.text,
