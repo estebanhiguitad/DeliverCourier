@@ -8,25 +8,22 @@ class OrderRepositoryHive implements OrderRepository {
   final OrderHiveBox _orderHiveBox;
 
   @override
-  Future<Order> getAnOrder(int id) {
-    // TODO: implement getAnOrder
-    throw UnimplementedError();
+  Future<Order> getAnOrder(int id) async {
+    return _orderHiveBox.getById(id);
   }
 
   @override
-  Future<List<Order>> getOrderList() {
-    // TODO: implement getOrderList
-    throw UnimplementedError();
+  Future<List<Order>> getOrderList() async {
+    return _orderHiveBox.get();
   }
 
   @override
   Future save(Order order) async {
-    _orderHiveBox.add();
+    _orderHiveBox.add(order);
   }
 
   @override
-  Future updateOrder(Order order) {
-    // TODO: implement updateOrder
-    throw UnimplementedError();
+  Future updateOrder(Order order) async {
+    _orderHiveBox.update(order);
   }
 }

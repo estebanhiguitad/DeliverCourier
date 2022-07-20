@@ -12,30 +12,43 @@ class OrderHiveBox {
   late Box<OrderHiveEntity> _orderHiveEntityBox;
   final OrderHiveMapper _orderHiveMapper;
 
-  add() {
-    _orderHiveEntityBox.add(OrderHiveEntity());
+  add(Order order) {
+    final orderHiveEntity = _orderHiveMapper.toOrderHiveEntity(order);
+    _orderHiveEntityBox.add(orderHiveEntity);
   }
 
-  get() {
-    final orders = _orderHiveEntityBox.values;
+  List<Order> get() {
+    final orders = _orderHiveEntityBox.values
+        .map((it) => _orderHiveMapper.toOrder(it))
+        .toList();
+    return orders;
   }
 
-  OrderHiveEntity getById(int id) {
+  Order getById(int id) {
     final orderHiveEntity = _orderHiveEntityBox.getAt(id);
     if (orderHiveEntity == null) {
       throw Exception();
     }
-    return orderHiveEntity;
+    final order = _orderHiveMapper.toOrder(orderHiveEntity);
+    return order;
   }
 
   update(Order order) {
-    final orderHiveEntity = getById(order.id);
+    final orderHiveEntity = _getAt(order.id);
     orderHiveEntity.startAddress = order.startAddress;
     orderHiveEntity.save();
   }
 
   delete(Order order) {
-    final orderHiveEntity = getById(order.id);
+    final orderHiveEntity = _getAt(order.id);
     orderHiveEntity.delete();
+  }
+
+  OrderHiveEntity _getAt(int id) {
+    final orderHiveEntity = _orderHiveEntityBox.getAt(id);
+    if (orderHiveEntity == null) {
+      throw Exception();
+    }
+    return orderHiveEntity;
   }
 }

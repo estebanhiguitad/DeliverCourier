@@ -16,4 +16,12 @@ class OrderHiveEntity extends HiveObject {
 
   @HiveField(3)
   late int state;
+
+  OrderHiveEntity(
+    this.startAddress,
+    this.endAddress,
+    this.description,
+    this.price,
+    this.state,
+  );
 }

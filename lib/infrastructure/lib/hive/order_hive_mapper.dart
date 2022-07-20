@@ -2,7 +2,7 @@ import 'package:domain/domain.dart';
 import 'package:infrastructure/hive/order_hive_entity.dart';
 
 class OrderHiveMapper {
-  toOrder(OrderHiveEntity orderHiveEntity) {
+  Order toOrder(OrderHiveEntity orderHiveEntity) {
     return Order(
       1,
       OrderState.values[orderHiveEntity.state],
@@ -10,6 +10,16 @@ class OrderHiveMapper {
       orderHiveEntity.price,
       orderHiveEntity.startAddress,
       orderHiveEntity.endAddress,
+    );
+  }
+
+  OrderHiveEntity toOrderHiveEntity(Order order) {
+    return OrderHiveEntity(
+      order.startAddress,
+      order.endAddress,
+      order.description,
+      order.price,
+      order.state.index,
     );
   }
 }
