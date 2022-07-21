@@ -75,12 +75,19 @@ class NewOrderView extends StatelessWidget {
 
   Widget _buttonSave() {
     return BlocConsumer<NewOrderBloc, NewOrderState>(
-      listener: (context, state) {},
+      listener: (context, state) {
+        if (state is NewOrderSuccess) {
+          const snackBar = SnackBar(
+            content: Text('Pedido registrado correctamente'),
+          );
+          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        }
+      },
       builder: (context, state) {
         return ElevatedButton(
             onPressed: () {
               final order = Order(
-                '',
+                const Uuid().v4(),
                 1,
                 OrderState.delivered,
                 descriptionCtrl.text,

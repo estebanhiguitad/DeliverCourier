@@ -1,4 +1,6 @@
 import 'package:delivery/di_container.dart';
+import 'package:delivery/presentation/list_orders/list_orders_screen.dart';
+import 'package:delivery/presentation/new_order/new_order_screen.dart';
 import 'package:delivery/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -24,8 +26,12 @@ class DeliveryCourierApp extends StatelessWidget {
     return MaterialApp(
       title: nameApp,
       theme: customTheme,
-      routes: routes(context),
+      /*routes: routes(context),
       initialRoute: "/",
+      */
+      home: Scaffold(
+        body: ListOrdersScreen(),
+      ),
     );
   }
 }
