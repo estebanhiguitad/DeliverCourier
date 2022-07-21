@@ -5,5 +5,5 @@ abstract class OrderObjectBoxDataSource {
 
   Order getAnOrder(int id);
 
-  Future saveOrUpdate(Order orderEntity);
+  void saveOrUpdate(Order orderEntity);
 }

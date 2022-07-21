@@ -27,7 +27,7 @@ class OrderObjectBoxDataSourceImpl implements OrderObjectBoxDataSource {
   }
 
   @override
-  Future saveOrUpdate(Order order) async {
+  void saveOrUpdate(Order order) async {
     OrderEntity orderEntity = order.fromOrder2OrderEntity();
     orderEntity.customer.target =
         order.customer.fromCustomerDomain2CustomerEntity();
