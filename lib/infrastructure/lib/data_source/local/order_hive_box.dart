@@ -15,36 +15,27 @@ class OrderHiveBox implements OrderLocalDataSource {
 
   @override
   Future<void> insert(Order order) async {
-    final orderHiveEntity = _orderHiveMapper.toOrderHiveEntity(order);
-    await _orderHiveEntityBox.put(orderHiveEntity.uid, orderHiveEntity);
+    throw Exception();
   }
 
   @override
   List<Order> get() {
-    final orders = _orderHiveEntityBox.values
-        .map((it) => _orderHiveMapper.toOrder(it))
-        .toList();
-    return orders;
+    throw Exception();
   }
 
   @override
   Order getByUid(String uid) {
-    final orderHiveEntity = _getOrderHiveEntity(uid);
-    final order = _orderHiveMapper.toOrder(orderHiveEntity);
-    return order;
+    throw Exception();
   }
 
   @override
   Future<void> update(Order order) async {
-    final orderHiveEntity = _getOrderHiveEntity(order.uid);
-    _orderHiveMapper.replace(order, orderHiveEntity);
-    await orderHiveEntity.save();
+    throw Exception();
   }
 
   @override
   Future<void> delete(Order order) async {
-    final orderHiveEntity = _getOrderHiveEntity(order.uid);
-    await orderHiveEntity.delete();
+    throw Exception();
   }
 
   OrderHiveEntity _getOrderHiveEntity(String uid) {
