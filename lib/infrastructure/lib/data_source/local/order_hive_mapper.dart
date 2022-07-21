@@ -1,5 +1,5 @@
 import 'package:domain/domain.dart';
-import 'package:infrastructure/hive/order_hive_entity.dart';
+import 'package:infrastructure/data_source/local/order_hive_entity.dart';
 
 class OrderHiveMapper {
   Order toOrder(OrderHiveEntity orderHiveEntity) {

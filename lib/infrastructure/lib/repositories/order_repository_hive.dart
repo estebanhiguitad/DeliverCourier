@@ -1,29 +1,29 @@
 import 'package:domain/entities/order.dart';
 import 'package:domain/repositories/order_repository.dart';
-import 'package:infrastructure/hive/order_hive_box.dart';
+import 'package:infrastructure/data_source/local/order_local_data_source.dart';
 
 class OrderRepositoryHive implements OrderRepository {
-  OrderRepositoryHive(this._orderHiveBox);
+  OrderRepositoryHive(this._orderLocalDataSource);
 
-  final OrderHiveBox _orderHiveBox;
+  final OrderLocalDataSource _orderLocalDataSource;
 
   @override
   Future<Order> getAnOrder(int id) async {
-    return _orderHiveBox.getByUid(id.toString());
+    return _orderLocalDataSource.getByUid(id.toString());
   }
 
   @override
   Future<List<Order>> getOrderList() async {
-    return _orderHiveBox.get();
+    return _orderLocalDataSource.get();
   }
 
   @override
   Future save(Order order) async {
-    _orderHiveBox.add(order);
+    _orderLocalDataSource.insert(order);
   }
 
   @override
   Future updateOrder(Order order) async {
-    _orderHiveBox.update(order);
+    _orderLocalDataSource.update(order);
   }
 }
