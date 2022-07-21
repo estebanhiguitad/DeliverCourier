@@ -1,4 +1,5 @@
 part of 'list_orders_bloc.dart';
 
-@immutable
 abstract class ListOrdersEvent {}
+
+class ListOrdersFetched extends ListOrdersEvent {}
