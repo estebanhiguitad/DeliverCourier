@@ -298,6 +298,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.0.1"
+  infrastructure:
+    dependency: "direct main"
+    description:
+      path: "lib/infrastructure"
+      relative: true
+    source: path
+    version: "0.0.1"
   io:
     dependency: transitive
     description:

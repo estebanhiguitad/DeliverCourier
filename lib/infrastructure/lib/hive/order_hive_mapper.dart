@@ -24,4 +24,13 @@ class OrderHiveMapper {
       order.state.index,
     );
   }
+
+  OrderHiveEntity mapper(Order order, OrderHiveEntity orderHiveEntity) {
+    orderHiveEntity.startAddress = order.startAddress;
+    orderHiveEntity.endAddress = order.endAddress;
+    orderHiveEntity.description = order.description;
+    orderHiveEntity.price = order.price;
+    orderHiveEntity.state = order.state.index;
+    return orderHiveEntity;
+  }
 }

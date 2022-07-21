@@ -6,15 +6,15 @@ import 'package:infrastructure/hive/order_hive_mapper.dart';
 
 class OrderHiveBox {
   OrderHiveBox(this._orderHiveMapper) {
-    _orderHiveEntityBox = Hive.box<OrderHiveEntity>(orderBox);
+    _orderHiveEntityBox = Hive.box<OrderHiveEntity>(orderBoxName);
   }
 
   late Box<OrderHiveEntity> _orderHiveEntityBox;
   final OrderHiveMapper _orderHiveMapper;
 
-  add(Order order) {
+  Future<void> add(Order order) async {
     final orderHiveEntity = _orderHiveMapper.toOrderHiveEntity(order);
-    _orderHiveEntityBox.put(orderHiveEntity.uid, orderHiveEntity);
+    await _orderHiveEntityBox.put(orderHiveEntity.uid, orderHiveEntity);
   }
 
   List<Order> get() {
@@ -30,15 +30,15 @@ class OrderHiveBox {
     return order;
   }
 
-  update(Order order) {
+  Future<void> update(Order order) async {
     final orderHiveEntity = _getOrderHiveEntity(order.uid);
-    orderHiveEntity.startAddress = order.startAddress;
-    orderHiveEntity.save();
+    _orderHiveMapper.mapper(order, orderHiveEntity);
+    await orderHiveEntity.save();
   }
 
-  delete(Order order) {
+  Future<void> delete(Order order) async {
     final orderHiveEntity = _getOrderHiveEntity(order.uid);
-    orderHiveEntity.delete();
+    await orderHiveEntity.delete();
   }
 
   OrderHiveEntity _getOrderHiveEntity(String uid) {

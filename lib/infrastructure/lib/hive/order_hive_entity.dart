@@ -1,5 +1,7 @@
 import 'package:hive/hive.dart';
 
+part 'order_hive_entity.g.dart';
+
 @HiveType(typeId: 0)
 class OrderHiveEntity extends HiveObject {
   @HiveField(0)
