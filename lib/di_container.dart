@@ -1,6 +1,8 @@
+import 'package:delivery/presentation/detail_order/bloc/updation_order_bloc.dart';
 import 'package:delivery/presentation/list_orders/bloc/list_orders_bloc.dart';
 import 'package:delivery/presentation/new_order/bloc/new_order_bloc.dart';
 import 'package:domain/repositories/order_repository.dart';
+import 'package:domain/use_cases/change_state_order.dart';
 import 'package:domain/use_cases/get_list_order.dart';
 import 'package:domain/use_cases/save_new_order.dart';
 import 'package:get_it/get_it.dart';
@@ -16,6 +18,14 @@ Future initDiContainer() async {
   serviceLocator.registerFactory(() => ListOrdersBloc(serviceLocator()));
 
   serviceLocator.registerLazySingleton(() => GetListOrder(serviceLocator()));
+
+  serviceLocator.registerLazySingleton(
+    () => UpdationOrderBloc(serviceLocator()),
+  );
+
+  serviceLocator.registerLazySingleton(
+    () => ChangeStateOrder(serviceLocator()),
+  );
 
   serviceLocator.registerLazySingleton<OrderRepository>(
     () => OrderRepositoryHive(serviceLocator()),
