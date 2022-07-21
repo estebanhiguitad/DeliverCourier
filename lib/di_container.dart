@@ -19,16 +19,14 @@ Future initDiContainer() async {
 
   serviceLocator.registerLazySingleton(() => GetListOrder(serviceLocator()));
 
-  serviceLocator.registerFactory(
-    () => UpdationOrderBloc(serviceLocator()),
-  );
+  serviceLocator.registerFactory(() => UpdationOrderBloc(serviceLocator()));
 
   serviceLocator.registerLazySingleton(
     () => ChangeStateOrder(serviceLocator()),
   );
 
   serviceLocator.registerLazySingleton<OrderRepository>(
-    () => OrderRepositoryHive(serviceLocator()),
+    () => OrderRepositoryProxy(serviceLocator()),
   );
 
   serviceLocator.registerLazySingleton<OrderLocalDataSource>(

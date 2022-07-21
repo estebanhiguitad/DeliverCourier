@@ -2,8 +2,8 @@ import 'package:domain/entities/order.dart';
 import 'package:domain/repositories/order_repository.dart';
 import 'package:infrastructure/data_source/local/order_local_data_source.dart';
 
-class OrderRepositoryHive implements OrderRepository {
-  OrderRepositoryHive(this._orderLocalDataSource);
+class OrderRepositoryProxy implements OrderRepository {
+  OrderRepositoryProxy(this._orderLocalDataSource);
 
   final OrderLocalDataSource _orderLocalDataSource;
 
