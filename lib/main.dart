@@ -1,13 +1,9 @@
 import 'package:delivery/delivery_app.dart';
 import 'package:delivery/di_container.dart';
-import 'package:delivery/presentation/list_orders/list_orders_screen.dart';
-import 'package:delivery/presentation/new_order/new_order_screen.dart';
 import 'package:delivery/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:infrastructure/infrastructure.dart';
-
-import 'routes.dart';
 
 void main() async {
   await Hive.initFlutter();

@@ -24,7 +24,7 @@ class NewOrderView extends StatelessWidget {
             children: [
               _formOrder(),
               const SizedBox(height: 16),
-              _buttonSave(),
+              _buttonSave(context),
             ],
           ),
         ),
@@ -77,9 +77,9 @@ class NewOrderView extends StatelessWidget {
     ));
   }
 
-  Widget _buttonSave() {
+  Widget _buttonSave(BuildContext context) {
     return BlocConsumer<NewOrderBloc, NewOrderState>(
-      listener: (context, state) {
+      listener: (contextBloc, state) {
         if (state is NewOrderSuccess) {
           const snackBar = SnackBar(
             content: Text('Pedido registrado correctamente'),

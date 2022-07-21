@@ -1,1 +1,1 @@
-const String orderBoxName = '__orderBoxv1';
+const String orderBoxName = '__orderBoxv2';
