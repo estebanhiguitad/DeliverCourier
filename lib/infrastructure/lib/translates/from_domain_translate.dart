@@ -11,7 +11,7 @@ extension TranslateFromDomain on Order {
     final orderEntity =
         OrderEntity(startAddress, endAddress, description, price);
     orderEntity.id = id;
-    orderEntity.dbStatus = state.index;
+    orderEntity.status = state;
     return orderEntity;
   }
 }

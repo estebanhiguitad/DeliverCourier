@@ -1,9 +1,9 @@
-import 'package:infrastructure/objectbox/order_entity.dart';
+import 'package:domain/entities/order.dart';
 
 abstract class OrderObjectBoxDataSource {
-  List<OrderEntity> getAll();
+  List<Order> getAll();
 
-  OrderEntity getAnOrder(int id);
+  Order getAnOrder(int id);
 
-  void saveOrUpdate(OrderEntity orderEntity);
+  Future saveOrUpdate(Order orderEntity);
 }
