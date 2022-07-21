@@ -37,7 +37,7 @@ class OrderHiveBox implements OrderLocalDataSource {
   @override
   Future<void> update(Order order) async {
     final orderHiveEntity = _getOrderHiveEntity(order.uid);
-    _orderHiveMapper.mapper(order, orderHiveEntity);
+    _orderHiveMapper.replace(order, orderHiveEntity);
     await orderHiveEntity.save();
   }
 

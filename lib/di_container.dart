@@ -31,7 +31,9 @@ Future initDiContainer() async {
     () => OrderRepositoryHive(serviceLocator()),
   );
 
-  serviceLocator.registerLazySingleton(() => OrderHiveBox(serviceLocator()));
+  serviceLocator.registerLazySingleton<OrderLocalDataSource>(
+    () => OrderHiveBox(serviceLocator()),
+  );
 
   serviceLocator.registerLazySingleton(() => OrderHiveMapper());
 }

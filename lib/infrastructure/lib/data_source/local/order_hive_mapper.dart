@@ -25,7 +25,7 @@ class OrderHiveMapper {
     );
   }
 
-  OrderHiveEntity mapper(Order order, OrderHiveEntity orderHiveEntity) {
+  OrderHiveEntity replace(Order order, OrderHiveEntity orderHiveEntity) {
     orderHiveEntity.startAddress = order.startAddress;
     orderHiveEntity.endAddress = order.endAddress;
     orderHiveEntity.description = order.description;
