@@ -45,7 +45,7 @@ class ItemOrder extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'Pedido #1',
+                  'Pedido # ${order.uid.substring(0, 6)}',
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                 ),
                 Text(stateOrder()),

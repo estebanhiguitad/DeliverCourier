@@ -24,7 +24,7 @@ class DetailOrderView extends StatelessWidget {
 
   AppBar _appBar() {
     return AppBar(
-      title: const Text('Detalle del pedido #1'),
+      title: Text('Detalle del pedido # ${order.uid.substring(0, 6)}'),
     );
   }
 
