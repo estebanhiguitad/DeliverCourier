@@ -12,13 +12,13 @@ class OrderRepositoryFake implements OrderRepository {
   }
 
   @override
-  Future<Order> getAnOrder(int id) async {
-    return _list.firstWhere((element) => element.id == id);
+  Future<Order> getAnOrder(String id) async {
+    return _list.firstWhere((element) => element.uid == id);
   }
 
   @override
   Future updateOrder(Order order) async {
-    _list.removeWhere((element) => element.id == order.id);
+    _list.removeWhere((element) => element.uid == order.uid);
     _list.add(order);
   }
 

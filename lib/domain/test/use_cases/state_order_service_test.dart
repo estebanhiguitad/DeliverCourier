@@ -15,7 +15,7 @@ void main() {
 
     // Act
     service(order);
-    final result = await repository.getAnOrder(order.id);
+    final result = await repository.getAnOrder(order.uid);
 
     // Assert
     expect(result.state, OrderState.onWay);
@@ -29,7 +29,7 @@ void main() {
 
     // Act
     service(order);
-    final result = await repository.getAnOrder(order.id);
+    final result = await repository.getAnOrder(order.uid);
 
     // Assert
     expect(result.state, OrderState.delivered);
@@ -43,7 +43,7 @@ void main() {
 
     // Act
     service(order);
-    final result = await repository.getAnOrder(order.id);
+    final result = await repository.getAnOrder(order.uid);
 
     // Assert
     expect(result.state, OrderState.delivered);
@@ -57,7 +57,7 @@ void main() {
 
     // Act
     service(order);
-    final result = await repository.getAnOrder(order.id);
+    final result = await repository.getAnOrder(order.uid);
 
     // Assert
     expect(result.state, OrderState.delivered);

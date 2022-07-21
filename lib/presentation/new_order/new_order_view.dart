@@ -93,7 +93,6 @@ class NewOrderView extends StatelessWidget {
               onPressed: () {
                 final order = Order(
                   const Uuid().v4(),
-                  1,
                   OrderState.received,
                   descriptionCtrl.text,
                   int.parse(priceCtrl.text),

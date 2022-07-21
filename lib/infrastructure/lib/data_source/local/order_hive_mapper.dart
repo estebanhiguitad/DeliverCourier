@@ -5,7 +5,6 @@ class OrderHiveMapper {
   Order toOrder(OrderHiveEntity orderHiveEntity) {
     return Order(
       orderHiveEntity.uid,
-      1,
       OrderState.values[orderHiveEntity.state],
       orderHiveEntity.description,
       orderHiveEntity.price,

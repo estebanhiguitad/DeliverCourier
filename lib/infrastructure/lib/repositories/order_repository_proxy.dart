@@ -8,8 +8,8 @@ class OrderRepositoryProxy implements OrderRepository {
   final OrderLocalDataSource _orderLocalDataSource;
 
   @override
-  Future<Order> getAnOrder(int id) async {
-    return _orderLocalDataSource.getByUid(id.toString());
+  Future<Order> getAnOrder(String uid) async {
+    return _orderLocalDataSource.getByUid(uid);
   }
 
   @override

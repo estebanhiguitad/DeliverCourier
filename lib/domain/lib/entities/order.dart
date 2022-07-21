@@ -5,13 +5,9 @@ import 'delivery_courier.dart';
 class Order {
   final String uid;
 
-  final int _id;
-
   final Customer customer;
 
   final DeliveryCourier deliveryCourier;
-
-  int get id => _id;
 
   OrderState _state;
 
@@ -35,7 +31,6 @@ class Order {
 
   Order(
     this.uid,
-    this._id,
     this._state,
     this._description,
     this._price,

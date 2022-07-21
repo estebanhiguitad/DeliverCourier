@@ -13,7 +13,7 @@ class OrderRepositoryStub implements OrderRepository {
   }
 
   @override
-  Future<Order> getAnOrder(int id) {
+  Future<Order> getAnOrder(String id) {
     // not implement getAnOrder
     throw UnimplementedError();
   }

@@ -1,4 +1,3 @@
-
 import '../entities/order.dart';
 
 abstract class OrderRepository {
@@ -6,7 +5,7 @@ abstract class OrderRepository {
 
   Future updateOrder(Order order);
 
-  Future<Order> getAnOrder(int id);
+  Future<Order> getAnOrder(String id);
 
   Future save(Order order);
 }
