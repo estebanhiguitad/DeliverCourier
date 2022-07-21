@@ -21,11 +21,15 @@ class OrderRepositoryImpl implements OrderRepository {
 
   @override
   Future save(Order order) async {
-    _dataSource.saveOrUpdate(order);
+    await _saveOrUpdate(order);
   }
 
   @override
   Future updateOrder(Order order) async {
+    await _saveOrUpdate(order);
+  }
+
+  Future _saveOrUpdate(Order order) async {
     _dataSource.saveOrUpdate(order);
   }
 }

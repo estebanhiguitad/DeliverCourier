@@ -8,30 +8,18 @@ import '../objectbox/order_entity.dart';
 
 extension TranslateOrderFromDataBase on OrderEntity {
   Order fromOrderEntity2OrderDomain() {
-    late Customer customerDomain;
-    if (customer.target != null) {
-      final entity = customer.target!;
-      customerDomain = Customer(entity.id, entity.name);
-    }
-
-    late DeliveryCourier deliveryCourierDomain;
-    if (deliveryCourier.target != null) {
-      final entity = deliveryCourier.target!;
-      deliveryCourierDomain = DeliveryCourier(entity.id, entity.name);
-    }
-
-    final order = Order(
-        id, status, description, price, startAddress, endAddress,
-        customer: customerDomain, deliveryCourier: deliveryCourierDomain);
-    return order;
+    throw Exception();
   }
 }
 
 extension TranslateCustomerFromDatabase on CustomerEntity {
-  Customer fromCustomerEntity2Customer() => Customer(id, name);
+  Customer fromCustomerEntity2Customer() {
+    throw Exception();
+  }
 }
 
 extension TranslateDeliveryCourierFromDatabase on DeliveryCourierEntity {
-  DeliveryCourier fromDeliveryCourierEntity2DeliveryCourier() =>
-      DeliveryCourier(id, name);
+  DeliveryCourier fromDeliveryCourierEntity2DeliveryCourier() {
+    throw Exception();
+  }
 }
