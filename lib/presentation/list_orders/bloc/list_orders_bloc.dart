@@ -17,7 +17,11 @@ class ListOrdersBloc extends Bloc<ListOrdersEvent, ListOrdersState> {
     Emitter<ListOrdersState> emit,
   ) async {
     emit(ListOrdersLoading());
-    final orders = await _getListOrder();
-    emit(ListOrdersSuccess(orders));
+    try {
+      final orders = await _getListOrder();
+      emit(ListOrdersSuccess(orders));
+    } catch (_) {
+      emit(ListOrdersSuccess([]));
+    }
   }
 }

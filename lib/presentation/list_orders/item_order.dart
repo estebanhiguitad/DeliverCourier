@@ -14,6 +14,19 @@ class ItemOrder extends StatelessWidget {
     );
   }
 
+  String stateOrder() {
+    switch (order.state.index) {
+      case 0:
+        return 'Recbido';
+      case 1:
+        return 'En camino';
+      case 2:
+        return 'Entregado';
+      default:
+        return 'Desconocido';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -35,7 +48,7 @@ class ItemOrder extends StatelessWidget {
                   'Pedido #1',
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                 ),
-                Text('Recibido'),
+                Text(stateOrder()),
               ],
             ),
             SizedBox(height: 4),

@@ -1,5 +1,4 @@
 import 'package:delivery/presentation/new_order/bloc/new_order_bloc.dart';
-import 'package:domain/value_object/order_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:uuid/uuid.dart';
@@ -15,22 +14,27 @@ class NewOrderView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [_title(), _formOrder(), _buttonSave()],
+    return Scaffold(
+      appBar: _appBar(),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              _formOrder(),
+              const SizedBox(height: 16),
+              _buttonSave(),
+            ],
+          ),
+        ),
       ),
     );
   }
 
-  Widget _title() {
-    return Text(
-      'Nuevo pedido',
-      style: TextStyle(
-        fontSize: 18,
-        fontWeight: FontWeight.bold,
-      ),
+  AppBar _appBar() {
+    return AppBar(
+      title: const Text('Nuevo pedido'),
     );
   }
 
@@ -84,21 +88,23 @@ class NewOrderView extends StatelessWidget {
         }
       },
       builder: (context, state) {
-        return ElevatedButton(
-            onPressed: () {
-              final order = Order(
-                const Uuid().v4(),
-                1,
-                OrderState.delivered,
-                descriptionCtrl.text,
-                int.parse(priceCtrl.text),
-                startAddressCtrl.text,
-                endAddressCtrl.text,
-              );
-              final newOrderBloc = context.read<NewOrderBloc>();
-              newOrderBloc.add(NewOrderSubmitted(order));
-            },
-            child: Text('Crear pedido'));
+        return Center(
+          child: ElevatedButton(
+              onPressed: () {
+                final order = Order(
+                  const Uuid().v4(),
+                  1,
+                  OrderState.received,
+                  descriptionCtrl.text,
+                  int.parse(priceCtrl.text),
+                  startAddressCtrl.text,
+                  endAddressCtrl.text,
+                );
+                final newOrderBloc = context.read<NewOrderBloc>();
+                newOrderBloc.add(NewOrderSubmitted(order));
+              },
+              child: const Text('Crear pedido')),
+        );
       },
     );
   }

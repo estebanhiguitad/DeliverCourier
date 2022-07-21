@@ -9,22 +9,64 @@ class ListOrdersView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ListOrdersBloc, ListOrdersState>(
-      builder: (context, state) {
-        if (state is ListOrdersSuccess) {
-          return _listOrders(state.orders);
-        }
-        return const CircularProgressIndicator();
-      },
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Column(
+        children: [
+          _header(context),
+          const SizedBox(height: 16),
+          BlocBuilder<ListOrdersBloc, ListOrdersState>(
+            builder: (context, state) {
+              if (state is ListOrdersSuccess) {
+                return state.orders.isEmpty
+                    ? _listOrdersEmpty(
+                        context, 'No se encontraron pedidos registrados')
+                    : _listOrders(state.orders);
+              }
+              return const CircularProgressIndicator();
+            },
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _header(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text('Listado de pedidos',
+            style: Theme.of(context).textTheme.titleLarge),
+        GestureDetector(
+          onTap: () {
+            final listOrdersBloc = BlocProvider.of<ListOrdersBloc>(context);
+            listOrdersBloc.add(ListOrdersFetched());
+          },
+          child: Icon(Icons.refresh_rounded),
+        )
+      ],
     );
   }
 
   Widget _listOrders(List<Order> orders) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
-      child: Column(
-        children: orders.map((order) => ItemOrder(order: order)).toList(),
-      ),
+    return Column(
+      children: orders.map((order) => ItemOrder(order: order)).toList(),
+    );
+  }
+
+  Widget _listOrdersEmpty(BuildContext context, String message) {
+    return Column(
+      children: [
+        const Image(
+          image: AssetImage('assets/empty_placeholder.png'),
+          width: 128,
+        ),
+        Text(
+          message,
+          textAlign: TextAlign.center,
+          style: Theme.of(context).textTheme.headlineSmall,
+        )
+      ],
     );
   }
 }
