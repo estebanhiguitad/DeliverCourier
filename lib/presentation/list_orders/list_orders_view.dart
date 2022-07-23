@@ -49,8 +49,10 @@ class ListOrdersView extends StatelessWidget {
   }
 
   Widget _listOrders(List<Order> orders) {
-    return Column(
-      children: orders.map((order) => ItemOrder(order: order)).toList(),
+    return Expanded(
+      child: ListView(
+        children: orders.map((order) => ItemOrder(order: order)).toList(),
+      ),
     );
   }
 

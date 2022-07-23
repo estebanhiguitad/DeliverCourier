@@ -1,14 +1,13 @@
 import 'package:domain/domain.dart';
 import 'package:hive/hive.dart';
-import 'package:infrastructure/data_source/local/contants_hive.dart';
 import 'package:infrastructure/data_source/local/order_hive_entity.dart';
 import 'package:infrastructure/data_source/local/order_local_data_source.dart';
 import 'package:infrastructure/data_source/local/mappers/order_mapper.dart';
 import 'package:infrastructure/data_source/local/mappers/order_hive_entity_mapper.dart';
 
 class OrderHiveBox implements OrderLocalDataSource {
-  OrderHiveBox() {
-    _orderBox = Hive.box<OrderHiveEntity>(orderBoxName);
+  OrderHiveBox(HiveInterface hiveDataBase, String boxName) {
+    _orderBox = hiveDataBase.box<OrderHiveEntity>(boxName);
   }
 
   late Box<OrderHiveEntity> _orderBox;
