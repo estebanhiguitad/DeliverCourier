@@ -2,27 +2,27 @@ import 'package:domain/domain.dart';
 import 'package:hive/hive.dart';
 import 'package:infrastructure/data_source/local/contants_hive.dart';
 import 'package:infrastructure/data_source/local/order_hive_entity.dart';
-import 'package:infrastructure/data_source/local/order_hive_mapper.dart';
 import 'package:infrastructure/data_source/local/order_local_data_source.dart';
+import 'package:infrastructure/data_source/local/mappers/order_mapper.dart';
+import 'package:infrastructure/data_source/local/mappers/order_hive_entity_mapper.dart';
 
 class OrderHiveBox implements OrderLocalDataSource {
-  OrderHiveBox(this._orderHiveMapper) {
-    _orderHiveEntityBox = Hive.box<OrderHiveEntity>(orderBoxName);
+  OrderHiveBox() {
+    _orderBox = Hive.box<OrderHiveEntity>(orderBoxName);
   }
 
-  late Box<OrderHiveEntity> _orderHiveEntityBox;
-  final OrderHiveMapper _orderHiveMapper;
+  late Box<OrderHiveEntity> _orderBox;
 
   @override
   Future<void> insert(Order order) async {
-    final orderHiveEntity = _orderHiveMapper.toOrderHiveEntity(order);
-    await _orderHiveEntityBox.put(orderHiveEntity.uid, orderHiveEntity);
+    final orderHiveEntity = order.toOrderHiveEntity();
+    await _orderBox.put(orderHiveEntity.uid, orderHiveEntity);
   }
 
   @override
   List<Order> get() {
-    final orders = _orderHiveEntityBox.values
-        .map((it) => _orderHiveMapper.toOrder(it))
+    final orders = _orderBox.values
+        .map((orderHiveEntity) => orderHiveEntity.toOrder())
         .toList();
     return orders;
   }
@@ -30,14 +30,14 @@ class OrderHiveBox implements OrderLocalDataSource {
   @override
   Order getByUid(String uid) {
     final orderHiveEntity = _getOrderHiveEntity(uid);
-    final order = _orderHiveMapper.toOrder(orderHiveEntity);
+    final order = orderHiveEntity.toOrder();
     return order;
   }
 
   @override
   Future<void> update(Order order) async {
     final orderHiveEntity = _getOrderHiveEntity(order.uid);
-    _orderHiveMapper.replace(order, orderHiveEntity);
+    order.replaceOrderHiveEntity(orderHiveEntity);
     await orderHiveEntity.save();
   }
 
@@ -48,7 +48,7 @@ class OrderHiveBox implements OrderLocalDataSource {
   }
 
   OrderHiveEntity _getOrderHiveEntity(String uid) {
-    final orderHiveEntity = _orderHiveEntityBox.get(uid);
+    final orderHiveEntity = _orderBox.get(uid);
     if (orderHiveEntity == null) {
       throw Exception();
     }
