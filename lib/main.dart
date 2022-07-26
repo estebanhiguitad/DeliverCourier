@@ -5,12 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:infrastructure/infrastructure.dart';
 
-const String nameDataBase = 'fast_app_v011';
+const String nameDataBase = 'fast_app_v001';
 
 void main() async {
-  await Hive.initFlutter(nameDataBase);
-  Hive.registerAdapter(OrderHiveEntityAdapter());
-  await Hive.openBox<OrderHiveEntity>(orderBoxName);
   initDiContainer();
   runApp(const DeliveryCourierApp());
 }
