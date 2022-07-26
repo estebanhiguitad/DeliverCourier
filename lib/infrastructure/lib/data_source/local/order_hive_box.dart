@@ -6,31 +6,44 @@ import 'package:infrastructure/data_source/local/mappers/order_mapper.dart';
 import 'package:infrastructure/data_source/local/mappers/order_hive_entity_mapper.dart';
 
 class OrderHiveBox implements OrderLocalDataSource {
-  OrderHiveBox() {}
+  OrderHiveBox(HiveInterface hiveDataBase, String boxName) {
+    _orderBox = hiveDataBase.box<OrderHiveEntity>(boxName);
+  }
+
+  late Box<OrderHiveEntity> _orderBox;
 
   @override
   Future<void> insert(Order order) async {
-    throw Exception();
+    final orderHiveEntity = order.toOrderHiveEntity();
+    _orderBox.put(orderHiveEntity.uid, orderHiveEntity);
   }
 
   @override
   List<Order> get() {
-    throw Exception();
+    final orders = _orderBox.values
+        .map((orderHiveEntity) => orderHiveEntity.toOrder())
+        .toList();
+
+    return orders;
   }
 
   @override
   Order getByUid(String uid) {
-    throw Exception();
+    final orderHiveEntity = _getOrderHiveEntity(uid);
+    return orderHiveEntity.toOrder();
   }
 
   @override
   Future<void> update(Order order) async {
-    throw Exception();
+    final orderHiveEntity = _getOrderHiveEntity(order.uid);
+    orderHiveEntity.replace(order);
+    await orderHiveEntity.save();
   }
 
   @override
   Future<void> delete(Order order) async {
-    throw Exception();
+    final orderHiveEntity = _getOrderHiveEntity(order.uid);
+    await orderHiveEntity.delete();
   }
 
   OrderHiveEntity _getOrderHiveEntity(String uid) {

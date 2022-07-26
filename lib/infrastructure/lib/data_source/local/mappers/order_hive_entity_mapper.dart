@@ -13,4 +13,12 @@ extension OrderHiveEntityMapper on OrderHiveEntity {
       createdAt,
     );
   }
+
+  replace(Order order) {
+    startAddress = order.startAddress;
+    endAddress = order.endAddress;
+    description = order.description;
+    price = order.price;
+    state = order.state.index;
+  }
 }
