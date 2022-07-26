@@ -27,48 +27,161 @@ class ItemOrder extends StatelessWidget {
     }
   }
 
+  Color stateOrderColor() {
+    switch (order.state.index) {
+      case 0:
+        return Colors.red;
+      case 1:
+        return Colors.blue;
+      case 2:
+        return Colors.green;
+      default:
+        return Colors.grey;
+    }
+  }
+
+  String descriptionCreatedAt() {
+    return '${order.createdAt.day} Jul, ${order.createdAt.year}';
+  }
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => navigationDetailOrderScreen(context),
       child: Container(
         margin: const EdgeInsets.symmetric(vertical: 8),
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        padding: const EdgeInsets.all(16.0),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8),
-          border: Border.all(color: Colors.grey, width: 1.5),
-        ),
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(8),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey[400]!,
+                blurRadius: 3,
+                spreadRadius: 2,
+                offset: const Offset(0, 2),
+              )
+            ]),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  'Pedido # ${order.uid.substring(0, 6)}',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                Row(
+                  children: <Widget>[
+                    CircleAvatar(
+                      radius: 16,
+                      backgroundColor: stateOrderColor(),
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          'Pedido # ${order.uid.substring(0, 6)}',
+                          style: TextStyle(
+                              fontSize: 15, fontWeight: FontWeight.bold),
+                        ),
+                        Text(descriptionCreatedAt()),
+                      ],
+                    ),
+                  ],
                 ),
-                Text(stateOrder()),
+                Text(
+                  '\$${order.price}',
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                ),
               ],
             ),
-            SizedBox(height: 4),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text('Recoger en: ${order.startAddress}'),
-                Text('Descripción: ${order.description}'),
-              ],
-            ),
-            const SizedBox(height: 4),
-            Align(
-              alignment: Alignment.centerRight,
-              child: Text(
-                '\$${order.price}',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              ),
-            ),
+            SizedBox(height: 16),
+            _buildTimeLine(order),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _buildTimeLine(Order order) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Row(
+          children: <Widget>[
+            Container(
+              height: 10,
+              width: 10,
+              decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Colors.indigo[800],
+                  boxShadow: [
+                    BoxShadow(
+                        color: Colors.indigo[100]!,
+                        blurRadius: 0,
+                        spreadRadius: 2)
+                  ]),
+            ),
+            SizedBox(
+              width: 10,
+            ),
+            Expanded(
+                child: Text(order.startAddress,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(color: Colors.grey[700]))),
+          ],
+        ),
+        _buildLineBorder(),
+        Row(
+          children: <Widget>[
+            Container(
+              height: 10,
+              width: 10,
+              decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Colors.white,
+                  border: Border.all(color: Colors.indigo[800]!, width: 2),
+                  boxShadow: [
+                    BoxShadow(
+                        color: Colors.indigo[100]!,
+                        blurRadius: 0,
+                        spreadRadius: 2)
+                  ]),
+            ),
+            SizedBox(
+              width: 10,
+            ),
+            Expanded(
+                child: Text(order.endAddress,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(color: Colors.grey[700]))),
+          ],
+        )
+      ],
+    );
+  }
+
+  Widget _buildLineBorder() {
+    return Column(
+      children: <Widget>[
+        _buildItemLineBorder(),
+        _buildItemLineBorder(),
+        _buildItemLineBorder(),
+      ],
+    );
+  }
+
+  Widget _buildItemLineBorder() {
+    return Container(
+      margin: EdgeInsets.only(left: 3.75, top: 0.5, bottom: 0.5),
+      height: 2,
+      width: 2,
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        color: Colors.grey[700],
       ),
     );
   }

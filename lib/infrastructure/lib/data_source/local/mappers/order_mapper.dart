@@ -10,6 +10,7 @@ extension OrderMapper on Order {
       description,
       price,
       state.index,
+      createdAt,
     );
   }
 

@@ -22,6 +22,9 @@ class OrderHiveEntity extends HiveObject {
   @HiveField(5)
   late int state;
 
+  @HiveField(6)
+  late DateTime createdAt;
+
   OrderHiveEntity(
     this.uid,
     this.startAddress,
@@ -29,5 +32,6 @@ class OrderHiveEntity extends HiveObject {
     this.description,
     this.price,
     this.state,
+    this.createdAt,
   );
 }

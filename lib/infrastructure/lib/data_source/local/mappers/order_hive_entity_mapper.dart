@@ -10,6 +10,7 @@ extension OrderHiveEntityMapper on OrderHiveEntity {
       price,
       startAddress,
       endAddress,
+      createdAt,
     );
   }
 }

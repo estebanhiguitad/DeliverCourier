@@ -23,13 +23,14 @@ class OrderHiveEntityAdapter extends TypeAdapter<OrderHiveEntity> {
       fields[4] as String,
       fields[3] as int,
       fields[5] as int,
+      fields[6] as DateTime,
     );
   }
 
   @override
   void write(BinaryWriter writer, OrderHiveEntity obj) {
     writer
-      ..writeByte(6)
+      ..writeByte(7)
       ..writeByte(0)
       ..write(obj.uid)
       ..writeByte(1)
@@ -41,7 +42,9 @@ class OrderHiveEntityAdapter extends TypeAdapter<OrderHiveEntity> {
       ..writeByte(4)
       ..write(obj.description)
       ..writeByte(5)
-      ..write(obj.state);
+      ..write(obj.state)
+      ..writeByte(6)
+      ..write(obj.createdAt);
   }
 
   @override
