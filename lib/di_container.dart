@@ -6,6 +6,7 @@ import 'package:domain/use_cases/change_state_order.dart';
 import 'package:domain/use_cases/get_list_order.dart';
 import 'package:domain/use_cases/save_new_order.dart';
 import 'package:get_it/get_it.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:infrastructure/infrastructure.dart';
 
 final serviceLocator = GetIt.I;
@@ -30,8 +31,8 @@ Future initDiContainer() async {
   );
 
   serviceLocator.registerLazySingleton<OrderLocalDataSource>(
-    () => OrderHiveBox(serviceLocator()),
+    () => OrderHiveBox(serviceLocator(), orderBoxName),
   );
 
-  serviceLocator.registerLazySingleton(() => OrderHiveMapper());
+  serviceLocator.registerLazySingleton(() => Hive);
 }

@@ -98,6 +98,7 @@ class NewOrderView extends StatelessWidget {
                   int.parse(priceCtrl.text),
                   startAddressCtrl.text,
                   endAddressCtrl.text,
+                  DateTime.now(),
                 );
                 final newOrderBloc = context.read<NewOrderBloc>();
                 newOrderBloc.add(NewOrderSubmitted(order));

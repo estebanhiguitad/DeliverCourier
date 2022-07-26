@@ -29,13 +29,16 @@ class Order {
 
   String get endAddress => _endAddress;
 
+  final DateTime createdAt;
+
   Order(
     this.uid,
     this._state,
     this._description,
     this._price,
     this._startAddress,
-    this._endAddress, {
+    this._endAddress,
+    this.createdAt, {
     this.customer = const Customer(0, "Customer 1"),
     this.deliveryCourier = const DeliveryCourier(0, "Delivery Courier"),
   });

@@ -15,6 +15,9 @@ class OrderHiveEntity {
 
   late int state;
 
+  @HiveField(6)
+  late DateTime createdAt;
+
   OrderHiveEntity(
     this.uid,
     this.startAddress,
@@ -22,5 +25,6 @@ class OrderHiveEntity {
     this.description,
     this.price,
     this.state,
+    this.createdAt,
   );
 }

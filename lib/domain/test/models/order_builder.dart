@@ -8,6 +8,7 @@ class OrderBuilder {
   int price = 1000;
   String startAddress = "Start address";
   String endAddress = "End address";
+  DateTime createdAt = DateTime.now();
 
   OrderBuilder withState(OrderState state) {
     this.state = state;
@@ -19,6 +20,6 @@ class OrderBuilder {
     return this;
   }
 
-  Order build() =>
-      Order(uid, state, description, price, startAddress, endAddress);
+  Order build() => Order(
+      uid, state, description, price, startAddress, endAddress, createdAt);
 }
