@@ -2,7 +2,7 @@ import 'package:hive/hive.dart';
 
 part 'order_hive_entity.g.dart';
 
-class OrderHiveEntity {
+class OrderHiveEntity extends HiveObject {
   late String uid;
 
   late String startAddress;
