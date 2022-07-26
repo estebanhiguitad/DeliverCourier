@@ -1,8 +1,6 @@
-import 'package:hive/hive.dart';
-
 part 'order_hive_entity.g.dart';
 
-class OrderHiveEntity extends HiveObject {
+class OrderHiveEntity {
   late String uid;
 
   late String startAddress;
@@ -15,7 +13,6 @@ class OrderHiveEntity extends HiveObject {
 
   late int state;
 
-  @HiveField(6)
   late DateTime createdAt;
 
   OrderHiveEntity(
